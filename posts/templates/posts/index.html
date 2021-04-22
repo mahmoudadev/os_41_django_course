@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Posts</title>
+</head>
+<body>
+<h1>List Posts</h1>
+{% for post in posts %}
+
+    <h2>{{ post.title }}</h2>
+    <p> {{ post.content }}</p>
+    <a href="{% url "delete" post.id %}">Delete</a>
+    <hr>
+{% endfor %}
+</body>
+</html>
