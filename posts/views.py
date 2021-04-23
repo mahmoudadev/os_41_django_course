@@ -2,14 +2,18 @@ from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from .forms import PostForm
 from .models import Post
+from django.http import HttpResponseForbidden
+from django.contrib.auth.decorators import login_required, permission_required
 
+@login_required
+@permission_required(["posts.view_post"], raise_exception=True)
 def index(request):
     posts = Post.objects.all()
     return render(request, "posts/index.html", {
         "posts": posts
     })
 
-
+@login_required
 def create(request):
     # if request.method == "POST":
     #     form = PostForm(request.POST)

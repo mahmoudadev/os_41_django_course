@@ -1,2 +1,5 @@
 env/
+.idea
+*.py[c]
+__pycache__
 
