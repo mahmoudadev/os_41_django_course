@@ -15,10 +15,19 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path , include
+from rest_framework import routers
+from posts.api.views import PostViewSet
 
+router = routers.DefaultRouter()
+router.register("", PostViewSet)
 urlpatterns = [
     path("", include("django.contrib.auth.urls")),
     path("", include("accounts.urls")),
     path('admin/', admin.site.urls),
-    path('posts/', include("posts.urls"))
+    path('posts/', include("posts.urls")),
+    path('api/posts/', include("posts.api.urls")),
+
+    # related to the Viewset class in api/views.py
+    path("api/viewsets/posts/", include(router.urls))
+
 ]
